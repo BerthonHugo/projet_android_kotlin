@@ -1,29 +1,25 @@
 package fr.epf.min1.android_project
 
-import androidx.appcompat.app.AppCompatActivity
+import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import fr.epf.min1.android_project.api.ApiTMDb
 import fr.epf.min1.android_project.databinding.ActivityDetailsFilmBinding
-import fr.epf.min1.android_project.model.DetailsFilm
 import fr.epf.min1.android_project.model.Film
-import fr.epf.min1.android_project.model.Genre
-import fr.epf.min1.android_project.model.Language
-import fr.epf.min1.android_project.model.ProductionCompany
-import fr.epf.min1.android_project.model.ProductionCountry
 import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
-import java.time.LocalDate
-
 
 
 class DetailsFilmActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityDetailsFilmBinding
+    private lateinit var menu: Menu
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_film)
@@ -46,8 +42,52 @@ class DetailsFilmActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_film_menu,menu)
+        if (menu != null) {
+            this.menu = menu
+        }
         return super.onCreateOptionsMenu(menu)
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_add_delete_from_favorite -> {
+                val db = DBHelper(this, null)
+                val movieId:Int = findViewById<TextView>(R.id.id_table_textView).text.toString().toInt()
+
+                if (isInDB(movieId, db)){
+                    menu.findItem(item.itemId).icon = ContextCompat.getDrawable(this, R.drawable.baseline_star_border_24)
+
+                    db.deleteFavoriteByMovieId(movieId)
+
+                    Toast.makeText(this," Movie deleted from favorites", Toast.LENGTH_SHORT).show()
+                }else{
+                    menu.findItem(item.itemId).icon = ContextCompat.getDrawable(this, R.drawable.baseline_star_24)
+
+                    val title = findViewById<TextView>(R.id.title_table_textView).text.toString()
+                    val rating = findViewById<TextView>(R.id.popularity_table_textView).text.toString().toFloat()
+                    val posterPath = findViewById<TextView>(R.id.poster_path_table_textView).text.toString()
+
+                    db.addFilm(movieId, title, rating, posterPath)
+
+                    Toast.makeText(this," Movie added to favorites", Toast.LENGTH_SHORT).show()
+                }
+
+
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun isInDB(id:Int,db:DBHelper) : Boolean{
+        val res: Cursor? = db.findFavoriteByMovieId(id)
+        if (res != null) {
+            if (res.moveToFirst()){
+                return true
+            }
+        }
+        return false
+    }
+
     private fun synchroDetails(id:Int) {
 
         val retrofit: Retrofit = ApiTMDb.getInstance()

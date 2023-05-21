@@ -1,5 +1,6 @@
 package fr.epf.min1.android_project
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -18,6 +19,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.camera.core.ExperimentalGetImage
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -86,11 +88,12 @@ class ListFilmActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.list_film_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
+    @ExperimentalGetImage
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.action_scan_qr_code -> {
-//                val intent = Intent(this, AddClientActivity::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, QRCodeActivity::class.java)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
