@@ -1,7 +1,10 @@
 package fr.epf.min1.android_project.model
 
-import java.time.LocalDate
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+import java.time.LocalDate
+@Parcelize
 data class DetailsFilm (
     val adult: Boolean,
     val backdrop_path: String?,
@@ -27,23 +30,26 @@ data class DetailsFilm (
     val video:Boolean,
     val vote_average:Float,
     val vote_count:Int
-)
-
+):Parcelable{}
+@Parcelize
 data class ProductionCountry(
     val iso_3166_1:String,
     val name:String
-)
+):Parcelable{}
+@Parcelize
 data class ProductionCompany(
     val name:String,
     val id:Int,
     val logo_path:String?,
     val origin_country:String
-)
+):Parcelable{}
+@Parcelize
 data class Language(
     val iso_639_1:String,
     val name:String
-)
+):Parcelable{}
+@Parcelize
 data class Genre(
     val id:Int,
     val name:String
-)
+): Parcelable {}

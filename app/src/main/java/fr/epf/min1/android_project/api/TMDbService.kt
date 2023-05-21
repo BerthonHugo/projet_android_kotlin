@@ -42,7 +42,7 @@ data class Film(
 data class GetMovieDetailsResults (
     val adult: Boolean,
     val backdrop_path: String?,
-    val belongs_to_collection:Object?,
+
     val budget: Int,
     val genres:List<Genre>,
     val homepage:String?,
