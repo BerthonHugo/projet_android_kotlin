@@ -133,10 +133,42 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip"
+                    android:paddingVertical="12dip"
+                    android:paddingHorizontal="5dp"
                     android:text="Rating"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
+
+                <LinearLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:context=".MainActivity"
+                    android:orientation="vertical"
+                    >
+
+                    <RatingBar
+                        android:id="@+id/rating_bar"
+                        style="?android:attr/ratingBarStyleIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:scaleX="0.75"
+                        android:scaleY="0.75"
+                        android:stepSize="0.5"
+                        android:theme="@style/RatingBar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="5dp"
+                        android:id="@+id/rating_table_textView"/>
+
+                </LinearLayout>
 
 
             </TableRow>
@@ -457,7 +489,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="400dp">
 
 
             <TextView

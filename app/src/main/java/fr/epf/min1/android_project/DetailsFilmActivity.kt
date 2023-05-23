@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -168,6 +169,12 @@ class DetailsFilmActivity : AppCompatActivity() {
 
             val overviewTableTextView = findViewById<TextView>(R.id.overview_table_textView)
             overviewTableTextView.text = filmRes.overview
+
+            val rBar = findViewById<RatingBar>(R.id.rating_bar)
+            rBar.rating = filmRes.vote_average / 2
+            rBar.isEnabled = false
+            val ratingTextView = findViewById<TextView>(R.id.rating_table_textView)
+            ratingTextView.text = "${filmRes.vote_average} out of ${filmRes.vote_count} votes"
 
             val idTableTextView = findViewById<TextView>(R.id.id_table_textView)
             idTableTextView.text = filmRes.id.toString()

@@ -32,6 +32,7 @@ class ListFilmActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
     private var lastPage:Int = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_film)
