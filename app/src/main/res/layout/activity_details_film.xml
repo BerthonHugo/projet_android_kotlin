@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".DetailsFilmActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,6 +14,7 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -19,11 +22,13 @@
                 android:id="@+id/movie_title_details_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:scrollHorizontally="false"
                 android:text="TITLE"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.476"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,25 +37,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintGuide_percent="0.37" />
 
             <ImageView
                 android:id="@+id/poster_details_imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TableLayout
+            android:id="@+id/details_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="25dp"
-            android:stretchColumns="*">
+            android:stretchColumns="*"
+            android:background="#f1f1f1">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -59,15 +68,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Title" />
+                    android:padding="5dip"
+                    android:text="Title"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/title_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -79,15 +90,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Original Title" />
+                    android:padding="5dip"
+                    android:text="Original Title"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/original_title_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -99,15 +112,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Overview" />
+                    android:padding="5dip"
+                    android:text="Overview"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/overview_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -118,17 +133,36 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="id" />
+                    android:padding="5dip"
+                    android:text="Rating"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip"
+                    android:text="id"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/id_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:inputType="number"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -136,15 +170,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Poster" />
+                    android:padding="5dip"
+                    android:text="Poster"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/poster_path_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -156,15 +192,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Languages" />
+                    android:padding="5dip"
+                    android:text="Languages"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/languages_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -176,15 +214,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Original language" />
+                    android:padding="5dip"
+                    android:text="Original language"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/original_language_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -196,15 +236,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Genres" />
+                    android:padding="5dip"
+                    android:text="Genres"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/genres_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -216,15 +258,18 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Runtime" />
+                    android:padding="5dip"
+                    android:text="Runtime"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/runtime_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:inputType="number"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -236,16 +281,18 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Adult" />
+                    android:padding="5dip"
+                    android:text="Adult"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/adult_table_textView"
+                <ImageView
+                    android:id="@+id/adult_table_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:padding="3dip"
-                    android:text="TextView" />
+                    android:src="@drawable/baseline_check_box_24" />
             </TableRow>
 
             <TableRow
@@ -256,15 +303,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Release date" />
+                    android:padding="5dip"
+                    android:text="Release date"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/release_date_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -276,15 +325,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Status" />
+                    android:padding="5dip"
+                    android:text="Status"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/status_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -296,15 +347,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Production companies" />
+                    android:padding="5dip"
+                    android:text="Production companies"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/production_companies_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -316,15 +369,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Tagline" />
+                    android:padding="5dip"
+                    android:text="Tagline"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tagline_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -336,15 +391,17 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Popularity" />
+                    android:padding="5dip"
+                    android:text="Popularity"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/popularity_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -356,15 +413,18 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Budget" />
+                    android:padding="5dip"
+                    android:text="Budget"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/budget_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
@@ -377,27 +437,31 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
-                    android:text="Production countries" />
+                    android:padding="5dip"
+                    android:text="Production countries"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/production_countries_table_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:padding="3dip"
+                    android:padding="5dip"
                     android:text="TextView" />
             </TableRow>
 
         </TableLayout>
 
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="300dp">
 
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -416,9 +480,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.jackandphantom.carouselrecyclerview.CarouselRecyclerview>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     </LinearLayout>
 
 </ScrollView>
