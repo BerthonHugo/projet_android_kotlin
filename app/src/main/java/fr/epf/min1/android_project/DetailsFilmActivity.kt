@@ -2,7 +2,6 @@ package fr.epf.min1.android_project
 
 import android.database.Cursor
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -51,8 +50,8 @@ class DetailsFilmActivity : AppCompatActivity() {
         when(item.itemId){
             R.id.action_add_delete_from_favorite -> {
                 val db = DBHelper(this, null)
-                val movieId:Int = findViewById<TextView>(R.id.id_table_textView).text.toString().toInt()
-
+                var movieId:Int = findViewById<TextView>(R.id.id_table_textView).text.toString().toInt()
+                movieId = 10
                 if (isInDB(movieId, db)){
                     menu.findItem(item.itemId).icon = ContextCompat.getDrawable(this, R.drawable.baseline_star_border_24)
 
@@ -66,7 +65,7 @@ class DetailsFilmActivity : AppCompatActivity() {
                     val rating = findViewById<TextView>(R.id.popularity_table_textView).text.toString().toFloat()
                     val posterPath = findViewById<TextView>(R.id.poster_path_table_textView).text.toString()
 
-                    db.addFilm(movieId, title, rating, posterPath)
+                    db.addFilm(movieId, "title", 1.1, "posterPath")
 
                     Toast.makeText(this," Movie added to favorites", Toast.LENGTH_SHORT).show()
                 }
@@ -96,9 +95,9 @@ class DetailsFilmActivity : AppCompatActivity() {
         runBlocking {
 
             //TODO where is the error?
-            val filmRes = service.getFilmsRecommendations(id,"8a001113b1bd015692aa418a6bf9a18b")
-            Toast.makeText(this@DetailsFilmActivity,"https://api.themoviedb.org/3/movie/${id}&api_key=8a001113b1bd015692aa418a6bf9a18b",Toast.LENGTH_SHORT).show()
-            Log.d("EPF", "https://api.themoviedb.org/3/movie/${id}&api_key=8a001113b1bd015692aa418a6bf9a18b")
+            //val filmRes = service.getFilmById(id.toString(),"8a001113b1bd015692aa418a6bf9a18b")
+//            Toast.makeText(this@DetailsFilmActivity,"https://api.themoviedb.org/3/movie/${id}&api_key=8a001113b1bd015692aa418a6bf9a18b",Toast.LENGTH_SHORT).show()
+//            Log.d("EPF", "https://api.themoviedb.org/3/movie/${id}&api_key=8a001113b1bd015692aa418a6bf9a18b")
         //Mapping
 //            val genres:List<Genre> = filmRes.genres.map {
 //                Genre(it.id,it.name)
@@ -145,7 +144,7 @@ class DetailsFilmActivity : AppCompatActivity() {
 //            //TODO create all widgets in layout/activity_details_film.xml
 //            //TODO create recycler view for genre, countries, companies, languages (horizontal)
 //            val titleTextView = findViewById<TextView>(R.id.movie_title_details_textView)
-//            titleTextView.text = filmRes?.title ?:"TITLE"
+//            titleTextView.text = filmRes.original_title
         }
     }
 

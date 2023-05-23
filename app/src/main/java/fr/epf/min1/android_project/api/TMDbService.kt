@@ -9,8 +9,9 @@ interface TMDbService {
     @GET("search/movie")
     suspend fun getFilms(@Query("api_key") api_key:String,@Query("query") query: String?, @Query("page") page: Int): GetFilmsResult
 
-    @GET("movie/{movie_id}")
-    suspend fun getFilmById(@Path("movie_id") movie_id:Int, @Query("api_key") api_key:String): GetMovieDetailsResults
+    @GET("/3/movie/{id}")
+    fun getFilmById(@Path("id") id : String, @Query ("api_key") api_key: String) : MovieResponseDetails
+
     @GET("movie/{movie_id}/recommendations")
     suspend fun getFilmsRecommendations(@Path("movie_id") movie_id:Int, @Query("api_key") api_key:String): GetFilmsResult
 }
@@ -38,6 +39,10 @@ data class Film(
     val video:Boolean,
     val vote_average: Float
 )
+
+data class MovieResponseDetails(val backdrop_path : String, val original_title :String, val overview: String,
+                                val poster_path : String, val tagline : String, val status : String,
+                                val release_date : String, val vote_average : Double)
 
 data class GetMovieDetailsResults (
     val adult: Boolean,

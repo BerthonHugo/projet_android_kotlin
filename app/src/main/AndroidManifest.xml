@@ -24,7 +24,8 @@
             android:theme="@style/Theme.Android_project" />
         <activity
             android:name=".DetailsFilmActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:parentActivityName=".ListFilmActivity"/>
         <activity
             android:name=".ListFilmActivity"
             android:exported="true">

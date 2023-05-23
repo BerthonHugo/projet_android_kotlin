@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import androidx.compose.ui.test.manifest.R
+
 
 class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
@@ -40,7 +40,7 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         return db.rawQuery("SELECT * FROM $TABLE_NAME WHERE $ID_COL = ?", selectionArgs)
     }
 
-    fun addFilm(id:Int, title : String, rating : Float, poster_path:String ){
+    fun addFilm(id:Int, title: String, rating: Double, poster_path:String ){
 
         val values = ContentValues()
 
