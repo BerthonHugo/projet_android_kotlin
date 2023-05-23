@@ -41,6 +41,14 @@
                 android:visibility="visible">
 
                 <ImageButton
+                    android:id="@+id/first_page_list_film_imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/baseline_keyboard_double_arrow_left_24" />
+
+                <ImageButton
                     android:id="@+id/previous_page_list_film_imageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,6 +77,14 @@
                     android:layout_weight="1"
                     android:visibility="visible"
                     app:srcCompat="@drawable/baseline_chevron_right_24" />
+
+                <ImageButton
+                    android:id="@+id/last_page_list_film_imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/baseline_keyboard_double_arrow_right_24" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

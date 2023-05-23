@@ -31,6 +31,7 @@ import retrofit2.Retrofit
 class ListFilmActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
+    private var lastPage:Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_film)
@@ -57,6 +58,20 @@ class ListFilmActivity : AppCompatActivity() {
         //TODO add change listener to update list after change
         pageEdittext.isEnabled = false
 
+
+        //first page
+        val firstPage = findViewById<ImageButton>(R.id.first_page_list_film_imageButton)
+        firstPage.setOnClickListener {
+            pageEdittext.setText("1")
+            synchro(queryEdittext.text.toString(),1)
+        }
+
+        // last page
+        val lastPage = findViewById<ImageButton>(R.id.last_page_list_film_imageButton)
+        lastPage.setOnClickListener {
+            pageEdittext.setText(this.lastPage.toString())
+            synchro(queryEdittext.text.toString(),this.lastPage)
+        }
 
         //previous page
         val previousButton = findViewById<ImageButton>(R.id.previous_page_list_film_imageButton)
@@ -117,7 +132,7 @@ class ListFilmActivity : AppCompatActivity() {
                 if (isInRange(intMin, intMax, input)) {
                     return null
                 }else{
-                    Toast.makeText(this@ListFilmActivity, "page between 1 and ${intMax}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ListFilmActivity, "page between 1 and $intMax", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: NumberFormatException) {
                 e.printStackTrace()
@@ -175,18 +190,27 @@ class ListFilmActivity : AppCompatActivity() {
             val pageTextView = findViewById<TextView>(R.id.page_list_film_TextView)
             pageTextView.text = String.format("%s-%s of %s", ((filmRes.page - 1) * 20 + 1).toString(),((filmRes.page - 1) * 20 + (films.size)).toString(),filmRes.total_results)
 
+            lastPage = filmRes.total_pages
+
             val previousImgBtn = findViewById<ImageButton>(R.id.previous_page_list_film_imageButton)
+            val fisrtPageImgBtn = findViewById<ImageButton>(R.id.first_page_list_film_imageButton)
             if (filmRes.page == 1){
                 previousImgBtn.visibility = View.GONE
+                fisrtPageImgBtn.visibility = View.GONE
             }else{
                 previousImgBtn.visibility = View.VISIBLE
+                fisrtPageImgBtn.visibility = View.VISIBLE
             }
 
             val nextImgBtn = findViewById<ImageButton>(R.id.next_page_list_film_imageButton)
+            val lastPageImgBtn = findViewById<ImageButton>(R.id.last_page_list_film_imageButton)
+
             if (filmRes.page == filmRes.total_pages){
                 nextImgBtn.visibility = View.GONE
+                lastPageImgBtn.visibility = View.GONE
             }else{
                 nextImgBtn.visibility = View.VISIBLE
+                lastPageImgBtn.visibility = View.VISIBLE
             }
 
             // Assigning filters
